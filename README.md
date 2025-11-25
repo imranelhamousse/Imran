@@ -1,226 +1,157 @@
-# Imran
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>بيرجر الغرب • الصفحة الرئيسية</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <title>بيرجر الغرب • تصميم بديل</title>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --accent:#ff6b35; --muted:#9aa4b2; --glass: rgba(255,255,255,0.04);
-      --glass-2: rgba(255,255,255,0.02);
-    }
+    :root{--bg:#fff2eb;--card:#ffffff;--accent:#ff3b30;--muted:#6b6b6b}
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Cairo',system-ui,Arial; background:linear-gradient(180deg,#071026 0%, #072033 60%); color:#e6eef8}
-    a{color:inherit;text-decoration:none}
-    /* NAV */
-    .nav{position:fixed;inset:auto 0 0 auto;top:0;right:0;left:0;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;backdrop-filter: blur(6px);background:linear-gradient(0deg, rgba(0,0,0,0.28), rgba(0,0,0,0.12));z-index:100}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}
-    .brand .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#ffd89b,#ff6b35);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
-    .nav-links{display:flex;gap:18px;align-items:center}
-    .btn{background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;font-weight:600;box-shadow:0 8px 18px rgba(255,107,53,0.12);}
+    body{margin:0;font-family:'Almarai',sans-serif;background:linear-gradient(180deg,#fff2eb 0%, #ffe8de 100%);color:#222}
+    a{color:inherit}
+    header{position:sticky;top:0;background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid rgba(0,0,0,0.06)}
+    .container{max-width:1100px;margin:0 auto;padding:18px}
+    .nav{display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo .ico{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#ffd1c1,#ff3b30);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
+    .cta{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700}
 
-    /* HERO */
-    .hero{min-height:92vh;display:grid;grid-template-columns:1fr 480px;gap:36px;padding:90px 6vw 60px;align-items:center}
-    .hero-left{max-width:820px}
-    .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass);color:var(--accent);font-weight:700;margin-bottom:18px}
-    h1{font-size:48px;line-height:1.02;margin:0 0 14px}
-    p.lead{color:var(--muted);font-size:18px;margin:0 0 20px}
-    .actions{display:flex;gap:12px;margin-top:18px}
-    .hero-cta{display:inline-flex;align-items:center;gap:10px}
+    /* Hero with split diagonal */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;padding:40px 18px}
+    .hero-card{background:var(--card);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+    h1{margin:0;font-size:36px}
+    p.lead{color:var(--muted);margin-top:8px}
 
-    /* floating burger */
-    .hero-right{position:relative}
-    .burger-card{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border-radius:18px;padding:22px;backdrop-filter: blur(6px);}
-    .floating-burger{position:absolute;top:-40px;left:40px;font-size:48px;transform:rotate(-15deg);animation:float 4s ease-in-out infinite}
-    @keyframes float{0%{transform:translateY(0) rotate(-12deg)}50%{transform:translateY(-16px) rotate(2deg)}100%{transform:translateY(0) rotate(-12deg)}}
+    /* Animated SVG burger */
+    .svg-wrap{display:flex;align-items:center;justify-content:center;height:320px}
+    .burger-svg{width:260px;height:260px}
+    .bun-top{transform-origin:50% 40%;animation:bounce 3s ease-in-out infinite}
+    @keyframes bounce{0%{transform:translateY(0)}50%{transform:translateY(-14px) rotate(-2deg)}100%{transform:translateY(0)}}
 
-    /* Menu grid */
-    .menu{padding:60px 6vw;background:linear-gradient(180deg, rgba(7,16,38,0.0), rgba(7,16,38,0.25));}
-    .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-    .card{background:var(--card);padding:16px;border-radius:14px;box-shadow:0 6px 18px rgba(2,6,23,0.6);transition:transform .32s, box-shadow .32s}
-    .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
-    .price{font-weight:800;color:var(--accent);font-size:18px}
+    /* Long page sections */
+    section{padding:40px 18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .menu-card{background:linear-gradient(180deg,#fff,#fff8f6);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.04)}
+    .price{font-weight:800;color:var(--accent)}
 
-    /* gallery */
-    .gallery{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:center;padding:60px 6vw}
-    .gallery .slider{overflow:hidden;border-radius:14px}
-    .slides{display:flex;gap:6px;transform:translateX(0);transition:transform .6s cubic-bezier(.2,.9,.2,1)}
-    .slide{min-width:70%;height:320px;background-size:cover;background-position:center;border-radius:12px}
+    /* Order modal */
+    .order-modal{position:fixed;right:18px;bottom:18px;background:var(--accent);color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.18);cursor:pointer}
 
-    /* features, counters */
-    .features{padding:60px 6vw;display:flex;gap:24px;align-items:stretch}
-    .feat{flex:1;background:var(--glass);padding:20px;border-radius:12px;text-align:center}
-    .count{font-size:28px;font-weight:800;color:var(--accent)}
+    /* Testimonials slider (css scroll snap) */
+    .snap{display:flex;gap:12px;overflow:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+    .snap > div{min-width:280px;flex:0 0 auto;scroll-snap-align:center;background:#fff;border-radius:12px;padding:14px;border:1px solid rgba(0,0,0,0.04)}
 
-    /* testimonials */
-    .testimonials{padding:60px 6vw;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-    .test-cards{display:flex;gap:18px;overflow:auto;padding-bottom:8px}
-    .test{min-width:280px;background:var(--card);padding:16px;border-radius:12px}
+    footer{padding:28px 18px;text-align:center;color:var(--muted)}
 
-    /* contact */
-    .contact{padding:60px 6vw 120px}
-    form{display:grid;grid-template-columns:1fr 240px;gap:12px}
-    input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-
-    footer{padding:24px 6vw;text-align:center;color:var(--muted)}
-
-    /* reveal animations */
-    .reveal{opacity:0;transform:translateY(18px);transition:all .7s cubic-bezier(.2,.9,.2,1)}
-    .reveal.show{opacity:1;transform:translateY(0)}
-
-    /* responsive */
-    @media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:120px}.hero-right{order:2}.burger-card{margin-top:14px}.gallery{grid-template-columns:1fr}}
-    @media(max-width:520px){h1{font-size:34px}.nav-links{display:none}.hero{padding:100px 4vw}}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:560px){.grid-3{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="brand"><div class="logo">🍔</div><div>بيرجر الغرب</div></div>
-    <div class="nav-links"><a class="btn" href="#menu">اطلب الآن</a></div>
-  </nav>
-
-  <header class="hero">
-    <div class="hero-left">
-      <div class="eyebrow">طعم أصيل — توصيل سريع</div>
-      <h1 class="reveal">أشهى <span style="color:var(--accent)">بيرجر</span> في المنطقة — بلمسة منزلية</h1>
-      <p class="lead reveal">نطبخ من مكونات طازجة، ونقدم بيرجر مُعدّ بحب. قوائم متنوعة، خيارات نباتية، وبرجر خاص بالمطعم — جربه اليوم!</p>
-      <div class="actions reveal">
-        <a class="btn hero-cta" href="#menu">قائمة الطعام</a>
-        <a class="hero-cta" href="#contact" style="padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06)">اتصل بنا</a>
-      </div>
-
-      <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap">
-        <div class="card reveal" style="display:flex;gap:12px;align-items:center;"> <div style="font-size:28px">🚚</div><div><div style="font-weight:700">توصيل سريع</div><div style="color:var(--muted);font-size:13px">في غضون 30-45 دقيقة</div></div></div>
-        <div class="card reveal" style="display:flex;gap:12px;align-items:center;"> <div style="font-size:28px">🌿</div><div><div style="font-weight:700">خيارات نباتية</div><div style="color:var(--muted);font-size:13px">نباتي؟ لدينا بدائل لذيذة</div></div></div>
-      </div>
-
-    </div>
-
-    <div class="hero-right">
-      <div class="floating-burger">🍔</div>
-      <div class="burger-card reveal">
-        <h3 style="margin:0 0 10px">برغر الأسبوع: الغربي الملكي</h3>
-        <p style="margin:0 0 12px;color:var(--muted)">لحم فاخر، جبنة ذائبة، صوص سري، وخبز محمص طازج.</p>
-        <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
-          <div style="font-weight:800;font-size:18px">120 درهم</div>
-          <div style="display:flex;gap:8px"><button class="btn">اطلب الآن</button><button style="padding:10px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04)">شاهد القائمة</button></div>
-        </div>
-      </div>
+  <header>
+    <div class="container nav">
+      <div class="logo"><div class="ico">🍔</div><div><strong>بيرجر الغرب</strong><div style="font-size:12px;color:var(--muted)">نكهات لا تُقاوم</div></div></div>
+      <div style="display:flex;gap:12px;align-items:center"><a class="cta" href="#menu">اطلب الآن</a><a href="#contact" style="font-size:14px;color:var(--muted)">تواصل</a></div>
     </div>
   </header>
 
-  <section id="menu" class="menu">
-    <h2 style="text-align:right;margin:0 0 18px">قائمة الطعام</h2>
-    <div class="menu-grid">
-      <div class="card reveal">
-        <h4 style="margin:0 0 8px">الغربي الكلاسيكي</h4>
-        <div style="color:var(--muted);font-size:14px;margin-bottom:10px">لحم بقر، خس، طماطم، صوص خاص</div>
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">85 درهم</div><button class="btn">أضف للسلة</button></div>
-      </div>
-      <div class="card reveal">
-        <h4 style="margin:0 0 8px">تشيكن كرنشي</h4>
-        <div style="color:var(--muted);font-size:14px;margin-bottom:10px">فيليه دجاج مقرمش، جبنة، صوص باربيكيو</div>
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">74 درهم</div><button class="btn">أضف للسلة</button></div>
-      </div>
-      <div class="card reveal">
-        <h4 style="margin:0 0 8px">بيرجر نباتي</h4>
-        <div style="color:var(--muted);font-size:14px;margin-bottom:10px">برجر نباتي محضر من الحمص والبقول</div>
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">65 درهم</div><button class="btn">أضف للسلة</button></div>
-      </div>
-      <div class="card reveal">
-        <h4 style="margin:0 0 8px">سِيدس و بطاطا مقلية</h4>
-        <div style="color:var(--muted);font-size:14px;margin-bottom:10px">بطاطا مقرمشة مع صوص انتخابي</div>
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">28 درهم</div><button class="btn">أضف للسلة</button></div>
-      </div>
-    </div>
-  </section>
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>تعرف على بيرجر الغرب — طابع غربي مع لمسة محلية</h1>
+        <p class="lead">برغر محضر من مكونات مُنتقاة، خبز مخبوز يومياً، وصوصات منزلية سرية — جرب تشكيلاتنا الخاصة أو صمّم البرغر بنفسك.</p>
 
-  <section class="gallery" aria-label="صور الأطعمة">
-    <div class="slider reveal">
-      <div class="slides" id="slides">
-        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder')"></div>
-        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder')"></div>
-        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder')"></div>
+        <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
+          <div style="background:#fff8f2;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)">توصيل سريع</div>
+          <div style="background:#fff8f2;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)">مكونات طازجة</div>
+          <div style="background:#fff8f2;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)">خيارات نباتية</div>
+        </div>
+
+        <div style="margin-top:22px;display:flex;gap:12px">
+          <a class="cta" href="#menu">اطلب من القائم</a>
+          <a style="padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(0,0,0,0.06)">القائمة الكاملة</a>
+        </div>
       </div>
-    </div>
-    <div style="padding:10px 0">
-      <h3 style="margin:0 0 10px">لمحة عن أطباقنا</h3>
-      <p style="color:var(--muted)">تشكيلة من الصور التي تُظهر جودة تقديمنا وحرصنا على التفاصيل. تصفح أكثر لترى تشكيلتنا كاملة.</p>
-      <div style="display:flex;gap:8px;margin-top:16px"><button class="btn" onclick="prevSlide()">السابق</button><button class="btn" onclick="nextSlide()">التالي</button></div>
-    </div>
-  </section>
 
-  <section class="features">
-    <div class="feat reveal">
-      <div style="font-size:34px">🍔</div>
-      <div style="font-weight:700;margin-top:8px">جودة مضمونة</div>
-      <div style="color:var(--muted);margin-top:6px">مكونات محلية وطازجة يومياً</div>
-    </div>
-    <div class="feat reveal">
-      <div style="font-size:34px">⏱️</div>
-      <div style="font-weight:700;margin-top:8px">سرعة وموثوقية</div>
-      <div style="color:var(--muted);margin-top:6px">توصيل خلال أقصر وقت ممكن</div>
-    </div>
-    <div class="feat reveal">
-      <div style="font-size:34px">💬</div>
-      <div style="font-weight:700;margin-top:8px">دعم العملاء</div>
-      <div style="color:var(--muted);margin-top:6px">ردود سريعة وودودة</div>
-    </div>
-  </section>
+      <div class="svg-wrap">
+        <!-- playful SVG burger with animated top bun -->
+        <svg class="burger-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ffd1c1"/><stop offset="1" stop-color="#ff7a5a"/></linearGradient>
+          </defs>
+          <g transform="translate(100,100)">
+            <g class="bun-top">
+              <ellipse rx="68" ry="30" fill="url(#g1)"></ellipse>
+              <g fill="#fff" opacity="0.9">
+                <circle cx="-30" cy="-8" r="3"/>
+                <circle cx="10" cy="-12" r="2.5"/>
+                <circle cx="36" cy="-6" r="2"/>
+              </g>
+            </g>
+            <ellipse cy="18" rx="72" ry="14" fill="#6a3b1a"></ellipse>
+            <rect x="-68" y="4" width="136" height="30" rx="6" fill="#d4a23b"></rect>
+            <ellipse cy="36" rx="70" ry="10" fill="#f6f0e4"></ellipse>
+          </g>
+        </svg>
+      </div>
+    </section>
 
-  <section class="testimonials">
-    <h3 style="text-align:right;margin:0 0 18px">آراء الزبائن</h3>
-    <div class="test-cards">
-      <div class="test reveal"><strong>سعيد</strong><p style="color:var(--muted)">أفضل بيرجر جربته في حياتي — طعم ولا أروع!</p></div>
-      <div class="test reveal"><strong>مريم</strong><p style="color:var(--muted)">خدمة سريعة والبرغر كان طري وذو نكهة مميزة.</p></div>
-      <div class="test reveal"><strong>أحمد</strong><p style="color:var(--muted)">الخيارات النباتية ممتازة — أوصي به.</p></div>
-    </div>
-  </section>
+    <section id="menu">
+      <div class="container">
+        <h2 style="margin:0 0 12px;text-align:right">قائمة مُختارة</h2>
+        <div class="grid-3">
+          <div class="menu-card">
+            <h4 style="margin:0">الملك الغربي</h4>
+            <p style="color:var(--muted);margin:6px 0">لحم بقري ممتاز، جبنة شيدر، بصل مكرمل</p>
+            <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">95 درهم</div><button style="padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#ff6b50,#ff3b30);color:#fff;border:none">أضف</button></div>
+          </div>
+          <div class="menu-card">
+            <h4 style="margin:0">تشيكن سبايسي</h4>
+            <p style="color:var(--muted);margin:6px 0">فيليه دجاج متبل ومقرمش</p>
+            <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">78 درهم</div><button style="padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#ff6b50,#ff3b30);color:#fff;border:none">أضف</button></div>
+          </div>
+          <div class="menu-card">
+            <h4 style="margin:0">برغر نباتي بالحمص</h4>
+            <p style="color:var(--muted);margin:6px 0">خيار صحي ونكهة رائعة</p>
+            <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">62 درهم</div><button style="padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#ff6b50,#ff3b30);color:#fff;border:none">أضف</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="contact" class="contact">
-    <h3 style="text-align:right;margin:0 0 12px">اتصل بنا</h3>
-    <form onsubmit="event.preventDefault();alert('تم إرسال الطلب - هذا نموذج تجريبي');">
-      <input placeholder="الاسم" required />
-      <input placeholder="الهاتف أو البريد" required />
-      <textarea placeholder="رسالتك / الطلب" rows="4"></textarea>
-      <div style="grid-column:1/-1;display:flex;justify-content:flex-end"><button class="btn">ارسل</button></div>
-    </form>
-  </section>
+    <section style="background:linear-gradient(180deg,transparent,#fff8f6);">
+      <div class="container">
+        <h3 style="text-align:right;margin-bottom:12px">آراء العملاء</h3>
+        <div class="snap">
+          <div><strong>ليلى</strong><p style="color:var(--muted);margin:6px 0">أفضل برغر في المدينة، والخبز طازج كل صباح.</p></div>
+          <div><strong>يوسف</strong><p style="color:var(--muted);margin:6px 0">الصلصات لديهم فريدة — لا أستطيع التوقف!</p></div>
+          <div><strong>عائشة</strong><p style="color:var(--muted);margin:6px 0">خدمة سريعة ونظافة ممتازة.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h3 style="text-align:right">حجز و تواصل</h3>
+        <form onsubmit="event.preventDefault();alert('شكراً! تم إرسال الرسالة (نموذج تجريبي)');" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <input placeholder="الاسم" required style="padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)" />
+          <input placeholder="هاتف" required style="padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)" />
+          <textarea placeholder="رسالة" rows="4" style="grid-column:1/-1;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)"></textarea>
+          <div style="grid-column:1/-1;text-align:left"><button class="cta">أرسل</button></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="order-modal" onclick="alert('نموذج الطلب: هذه واجهة تجريبية');">🛒 افتح الطلب</div>
 
   <footer>
-    &copy; 2025 بيرجر الغرب — جميع الحقوق محفوظة • تصميم سريع
+    <div class="container">
+      <small>© 2025 بيرجر الغرب — جميع الحقوق محفوظة</small>
+    </div>
   </footer>
-
-  <script>
-    // Simple reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
-    },{threshold:0.12});
-    reveals.forEach(r=>obs.observe(r));
-
-    // Slider logic
-    const slides = document.getElementById('slides');
-    let idx = 0;
-    function updateSlide(){
-      const w = slides.children[0].getBoundingClientRect().width + 6; // gap
-      slides.style.transform = `translateX(${-(w*idx)}px)`;
-    }
-    function nextSlide(){ idx = Math.min(idx+1, slides.children.length-1); updateSlide(); }
-    function prevSlide(){ idx = Math.max(idx-1,0); updateSlide(); }
-    // auto slide
-    setInterval(()=>{ idx = (idx+1) % slides.children.length; updateSlide(); },4500);
-
-    // small parallax on mouse
-    document.addEventListener('mousemove', (e)=>{
-      const el = document.querySelector('.floating-burger');
-      if(!el) return;
-      const x = (e.clientX - window.innerWidth/2)/30;
-      const y = (e.clientY - window.innerHeight/2)/30;
-      el.style.transform = `translate(${x}px,${y}px) rotate(-8deg)`;
-    });
-  </script>
 </body>
 </html>
+
